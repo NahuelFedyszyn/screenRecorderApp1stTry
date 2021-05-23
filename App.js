@@ -29,19 +29,22 @@ const App = () => {
   }
 
   async function handleStop(){
-    const res = await RecordScreen.stopRecording().catch((error) => console.warn(error));
+    const res = await RecordScreen.stopRecording().catch((error) => alert(error));
+    alert("Grabacion guardada en " +res.result.outputURL)
     if (res){
       const url = res.result.outputURL;
     }
+    //alert(res)
+    RecordScreen.clean();
   }
 
   return (
     <SafeAreaView>
       <ScrollView>
         <View>
-          <Button title="RECORD" onPress={handleRecord} />
+          <Button title="GRABAR" onPress={handleRecord} />
           <Button title="STOP" onPress={handleStop} />
-          <TextInput placeholder="Useless text"></TextInput>
+          <TextInput placeholder="Escribir"></TextInput>
         </View>
       </ScrollView>
     </SafeAreaView>
